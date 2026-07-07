@@ -241,7 +241,9 @@ class FlutterPosPrinterPlatformPlugin : FlutterPlugin, MethodCallHandler, Plugin
         currentActivity = binding.activity
         binding.addRequestPermissionsResultListener(this)
         binding.addActivityResultListener(this)
-        bluetoothService.setActivity(currentActivity)
+        if (this::bluetoothService.isInitialized) {
+            bluetoothService.setActivity(currentActivity)
+        }
     }
 
     override fun onDetachedFromActivity() {
